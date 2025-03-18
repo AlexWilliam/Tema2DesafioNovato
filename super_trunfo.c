@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void main() {
+    char estado1, estado2;
+    char codigo1[5], codigo2[5], nomeCidade1[50], nomeCidade2[50];
+    int populacao1, populacao2, numeroPontosTuristicos1, numeroPontosTuristicos2;
+    float areaCidade1, areaCidade2, pibCidade1, pibCidade2, densidadePopulacional1, densidadePopulacional2, PIBPerCapita1, PIBPerCapita2;
+    char buffer[100]; // buffer para utilizar fgets em numeros inteiros e float
+
+    // dados da cidade 1
+    printf("Digite o estado da carta 1:(Letra de A até H)\n");
+    scanf(" %c", &estado1);
+    getchar();
+
+    printf("Digite o código da carta 1:(A letra do estado + 2 números inteiros)\n");
+    fgets(codigo1, 5, stdin);
+    codigo1[strcspn(codigo1, "\n")] = '\0';
+
+    printf("Digite o nome da cidade 1:\n");
+    fgets(nomeCidade1, 50, stdin);
+    nomeCidade1[strcspn(nomeCidade1, "\n")] = '\0';
+
+    printf("Digite a população da cidade 1:(em numeros)\n");
+    fgets(buffer, sizeof(buffer),stdin);
+    populacao1 = strtof(buffer, NULL);
+
+    printf("Digite a área da cidade 1:(em numeros, com decimal separado por .)\n");
+    fgets(buffer, sizeof(buffer), stdin);
+    areaCidade1 = strtof(buffer, NULL);
+
+    printf("Digite o PIB da cidade 1:(em numeros, com decimal separado por .)\n");
+    fgets(buffer, sizeof(buffer), stdin);
+    pibCidade1 = strtof(buffer, NULL);
+
+    printf("Digite a quantidade de pontos turisticos da cidade 1:(em numeros)\n");
+    fgets(buffer, sizeof(buffer),stdin);
+    numeroPontosTuristicos1 = strtof(buffer, NULL);
+
+    printf("\n\n");
+
+    fflush(stdin);
+
+    // dados da cidade 2
+    printf("Digite o estado da carta 2:(Letra de A até H)\n");
+    scanf(" %c", &estado2);
+    getchar();
+
+    printf("Digite o código da carta 2:(A letra do estado + 2 números inteiros)\n");
+    fgets(codigo2, 5, stdin);    
+    codigo2[strcspn(codigo2, "\n")] = '\0';
+
+    printf("Digite o nome da cidade 2:\n");
+    fgets(nomeCidade2, 50, stdin);    
+    nomeCidade2[strcspn(nomeCidade2, "\n")] = '\0';
+
+    printf("Digite a população da cidade 2:(em numeros)\n");
+    fgets(buffer, sizeof(buffer),stdin);
+    populacao2 = strtof(buffer, NULL);
+
+    printf("Digite a área da cidade 2:(em numeros, com decimal separado por .)\n");
+    fgets(buffer, sizeof(buffer), stdin);
+    areaCidade2 = strtof(buffer, NULL);
+
+    printf("Digite o PIB da cidade 2:(em numeros, com decimal separado por .)\n");
+    fgets(buffer, sizeof(buffer), stdin);
+    pibCidade2 = strtof(buffer, NULL);
+
+    printf("Digite a quantidade de pontos turisticos da cidade 2:(em numeros)\n");
+    fgets(buffer, sizeof(buffer),stdin);
+    numeroPontosTuristicos2 = strtof(buffer, NULL);
+
+    // calculo da cidade 1
+    densidadePopulacional1 = populacao1 / areaCidade1;
+    PIBPerCapita1 = pibCidade1 / populacao1;
+
+    // calculo cidade 2
+    densidadePopulacional2 = populacao2 / areaCidade2;
+    PIBPerCapita2 = pibCidade2 / populacao2;
+
+    if(densidadePopulacional1 > densidadePopulacional2){
+        printf("Cidade 1(%s) venceu!", nomeCidade1);
+    }else {
+        if(densidadePopulacional1 < densidadePopulacional2){
+            printf("Cidade 2(%s) venceu!", nomeCidade2);
+        }else{
+            printf("As cidades %s e %s empataram!", nomeCidade1, nomeCidade2);
+        }
+    }
+
+}
